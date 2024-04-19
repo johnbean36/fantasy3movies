@@ -5,3 +5,9 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 def home(request):
     return render(request, 'home.html')
+
+def movies_index(request):
+    return render(request, 'movies/index.html')
+
+def movies_detail(request):
+    return render (request, 'movies/detial.html')
