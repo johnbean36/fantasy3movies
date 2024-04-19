@@ -1,0 +1,1 @@
+wheel @ file:///opt/homebrew/Cellar/python%403.12/3.12.2_1/libexec/wheel-0.43.0-py3-none-any.whl#sha256=b66b1ea367126425ba6ef889a0c0b800a291c380b7c313f2198876288fb9be06
