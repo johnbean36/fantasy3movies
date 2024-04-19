@@ -13,13 +13,27 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
+    <header class="navbar">
+        <nav>
+            <div class="nav-wrapped">
+                <ul>
+                    <li><a href="{% url 'home' %}">Fantasy3Movies</a></li>
+                </ul>
+                <ul class="right">
+                    <li><a href="{% url 'index' %}">Dream Movies</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+
 
     <main class="container">
         {% block content %}
         {% endblock %}
     </main>
   	<footer class="page-footer">
-       <div class="right">All Rights Reserved, &copy; 2022 Cat Collector &nbsp;</div>
+       <div class="right">All Rights Reserved, &copy; 2024 Fantasy3Movies &nbsp;</div>
     </footer>
 </body>
 </html>
