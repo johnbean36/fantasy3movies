@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.core.validators import RegexValidator
 
 # Create your models here.
 GENRES = (
@@ -55,7 +56,17 @@ class Movie(models.Model):
         choices=GENRES,
     )
     description = models.TextField(max_length=500)
-    release_year = models.IntegerField()
+    release_year = models.IntegerField(
+    validators=[
+        RegexValidator(
+            regex=r'^19\d{2}|20[0-4]\d$', 
+            message="Enter a valid year between 1900 and 2049",
+        ),
+    ],
+    error_messages={
+        'invalid': 'Enter a valid year between 1900 and 2049',
+    }
+)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     prod_mem = models.ManyToManyField(Prod_Mem)
     actor = models.ManyToManyField(Actor)
