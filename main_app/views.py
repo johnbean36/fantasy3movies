@@ -10,4 +10,4 @@ def movies_index(request):
     return render(request, 'movies/index.html')
 
 def movies_detail(request):
-    return render (request, 'movies/detial.html')
+    return render (request, 'movies/detail.html')
