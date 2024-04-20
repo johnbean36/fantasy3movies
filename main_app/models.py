@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 # Create your models here.
 GENRES = (
@@ -61,5 +62,8 @@ class Movie(models.Model):
 
     def __str__(self):
         return f'{self.name} ({self.id})'
+    
+    def get_absolute_url(self):
+        return reverse('detail', kwargs = {'movie_id': self.id})
 
 

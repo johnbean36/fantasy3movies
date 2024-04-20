@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import Movie
 
 # Create your views here.
 
@@ -14,9 +16,10 @@ def movies_index(request):
     return render(request, 'movies/index.html')
 
 def movies_detail(request):
-    return render (request, 'movies/detial.html')
+    return render(request, 'movies/detial.html')
 
-
+def movies_add(request):
+   return render(request, 'movies/add')
 
 def signup(request):
   error_message = ''
@@ -31,3 +34,9 @@ def signup(request):
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
+
+class AddMovie(CreateView):
+   model = Movie
+   fields = ['name', 'genre', 'description', 'release_year',]
+
+  

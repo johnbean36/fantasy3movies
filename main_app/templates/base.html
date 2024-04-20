@@ -21,7 +21,8 @@
                 </ul>
                 <ul class="right">
                     {% if user.is_authenticated %}
-                         <li><a href="{% url 'index' %}">Dream Movies</a></li>
+                        <li><a href="{% url 'index' %}">Dream Movies</a></li>
+                        <li><a href="{% url 'add_movie' %}">Add a Movie</a></li>
                         <li>
                             <form id="logout-form" method="post" action="{% url 'logout' %}">
                             {% csrf_token %}
@@ -45,7 +46,7 @@
         {% endblock %}
     </main>
   	<footer class="page-footer">
-       <div class="right">All Rights Reserved, &copy; 2024 Fantasy3Movies &nbsp;</div>
+       <div class="right">Fantasy3Movies &copy;&nbsp; 2024 </div>
     </footer>
 </body>
 </html>
