@@ -66,7 +66,7 @@ class Movie(models.Model):
     error_messages={
         'invalid': 'Enter a valid year between 1900 and 2049',
     }
-)
+    )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     prod_mem = models.ManyToManyField(Prod_Mem)
     actor = models.ManyToManyField(Actor)
@@ -76,5 +76,3 @@ class Movie(models.Model):
     
     def get_absolute_url(self):
         return reverse('detail', kwargs = {'movie_id': self.id})
-
-

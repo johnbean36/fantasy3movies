@@ -15,8 +15,8 @@ def home(request):
 def movies_index(request):
     return render(request, 'movies/index.html')
 
-def movies_detail(request):
-    return render(request, 'movies/detial.html')
+def movies_detail(request, movie_id):
+    return render(request, 'movies/detaill.html')
 
 #def movies_add(request):
 #   return render(request, 'movies/add')
@@ -38,6 +38,9 @@ def signup(request):
 class AddMovie(CreateView):
   model = Movie
   fields = ['name', 'genre', 'description', 'release_year',]
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
 
 class AddActor(CreateView):
   model = Actor
