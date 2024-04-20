@@ -5,7 +5,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Movie
+from .models import Movie, Actor, Prod_Mem
 
 # Create your views here.
 
@@ -15,11 +15,11 @@ def home(request):
 def movies_index(request):
     return render(request, 'movies/index.html')
 
-def movies_detail(request):
-    return render(request, 'movies/detial.html')
+def movies_detail(request, movie_id):
+    return render(request, 'movies/detaill.html')
 
-def movies_add(request):
-   return render(request, 'movies/add')
+#def movies_add(request):
+#   return render(request, 'movies/add')
 
 def signup(request):
   error_message = ''
@@ -36,7 +36,19 @@ def signup(request):
   return render(request, 'registration/signup.html', context)
 
 class AddMovie(CreateView):
-   model = Movie
-   fields = ['name', 'genre', 'description', 'release_year',]
+  model = Movie
+  fields = ['name', 'genre', 'description', 'release_year',]
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
+
+class AddActor(CreateView):
+  model = Actor
+  field = ['name', 'dob', 'nationality']
+
+class AddProd_Mem(CreateView):
+  model = Prod_Mem
+  field = ['role', 'name']
+
 
   
