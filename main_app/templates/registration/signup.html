@@ -3,6 +3,12 @@
 
 <h1>Register for Fantasy 3 Movies</h1>
 
+<p class="red-text">{{ error_message }}</p>
 
+<form method="POST" action="{% url 'signup' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" class="btn" value="Sign Up">
+</form>
 
 {% endblock %}
