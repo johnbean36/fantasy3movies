@@ -18,8 +18,8 @@ def movies_index(request):
 def movies_detail(request):
     return render(request, 'movies/detial.html')
 
-def movies_add(request):
-   return render(request, 'movies/add')
+#def movies_add(request):
+#   return render(request, 'movies/add')
 
 def signup(request):
   error_message = ''

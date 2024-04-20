@@ -7,5 +7,6 @@ urlpatterns = [
     path('movies/detail/', views.movies_detail, name='details'),
     path('movies/add/', views.AddMovie.as_view(), name='add_movie'),
     path('accounts/signup/', views.signup, name='signup'),
+    path('movies/')
 
 ]
