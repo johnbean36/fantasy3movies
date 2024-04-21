@@ -17,7 +17,7 @@
 <body>
     <header class="navbar">
         <nav>
-            <div class="nav-wrapped">
+            <div class="nav-wrapper">
                 <ul>
                     <li><a href="{% url 'home' %}">Fantasy3Movies</a></li>
                 </ul>
@@ -25,8 +25,8 @@
                     {% if user.is_authenticated %}
                         <li><a href="{% url 'index' %}">Dream Movies</a></li>
                         <li><a href="{% url 'add_movie' %}">Add a Movie</a></li>
-                        <li><a href="{% url 'actors' %}">Actors</a></li>
-                        <li><a href="{% url 'production' %}"></a></li>
+                        <li><a href="{% url 'actors' %}">Add Actors</a></li>
+                        <li><a href="{% url 'production' %}">Add Production Members</a></li>
                         <li>
                             <form id="logout-form" method="post" action="{% url 'logout' %}">
                             {% csrf_token %}
@@ -42,8 +42,6 @@
             </div>
         </nav>
     </header>
-
-
 
     <main class="container">
         {% block content %}
