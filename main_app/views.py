@@ -13,10 +13,16 @@ def home(request):
     return render(request, 'home.html')
 
 def movies_index(request):
-    return render(request, 'movies/index.html')
+    movies = Movie.objects.all()
+    return render(request, 'movies/index.html', {
+       'movies': movies
+    })
 
 def movies_detail(request, movie_id):
-    return render(request, 'movies/detaill.html')
+    movie = Movie.objects.get(id=movie_id)
+    return render(request, 'movies/detail.html', {
+       'movie': movie
+    })
 
 #def movies_add(request):
 #   return render(request, 'movies/add')
