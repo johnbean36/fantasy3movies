@@ -1,0 +1,18 @@
+{% extends '../base.html' %}
+
+{% block content %}
+
+<form action="" method="POST">
+<table>
+    {{ form.as_table }}
+</table>
+<input type="submit" value="Submit!" class="btn">
+</form>
+
+<!-- We never learn jQuery but a stack overflock article I found said i needed this code to get Materialize to initialize the dropdown menu-->
+<script>
+    $(document).ready(function(){
+      $('select').formSelect();
+    });
+  </script>
+{% endblock %}

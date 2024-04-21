@@ -44,17 +44,26 @@ def signup(request):
 class AddMovie(CreateView):
   model = Movie
   fields = ['name', 'genre', 'description', 'release_year',]
+
   def form_valid(self, form):
     form.instance.user = self.request.user
     return super().form_valid(form)
 
 class AddActor(CreateView):
   model = Actor
-  field = ['name', 'dob', 'nationality']
+  fields = ['name', 'dob', 'nationality']
+
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
 
 class AddProd_Mem(CreateView):
   model = Prod_Mem
-  field = ['role', 'name']
+  fields = ['name', 'role']
+
+  def form_valid(self, form):
+     form.instance.user = self.request.user
+     return super().form_valid(form)
 
 
   
