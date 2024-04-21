@@ -1,11 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Dream Movies List</h1>
-<h3>index page</h3>
+<h1>Fantasy Movies List</h1>
+<!-- <h3>index page</h3> -->
 
 {% for movie in movies %}
-    <a href="{% url 'detail' movie.id %}">{ movie.name }</a>
+    <a href="{% url 'detail' movie.id %}">
+        <div class="card">
+            <div class="cart-co">
+                <span class="card-title">{{ movie.name }}</span>
+                <p>Genre: {{movie.get_genre_display}}</p>
+
+            </div>
+        </div>
+    </a>
+
+
+
 {% endfor %}
 
 
