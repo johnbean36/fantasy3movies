@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Movie, Actor, Prod_Mem
+from django.views.generic import DeleteView
 
 # Create your views here.
 
@@ -23,9 +24,6 @@ def movies_detail(request, movie_id):
     return render(request, 'movies/detail.html', {
        'movie': movie
     })
-
-#def movies_add(request):
-#   return render(request, 'movies/add')
 
 def signup(request):
   error_message = ''
@@ -56,6 +54,12 @@ class AddActor(CreateView):
   def form_valid(self, form):
     form.instance.user = self.request.user
     return super().form_valid(form)
+  
+  #The Django docs say this is how you add custom data to a generic CBV
+  def get_context_data(self, **kwargs):
+     context = super().get_context_data(**kwargs)
+     context["actor_list"] = Actor.objects.all()
+     return context
 
 class AddProd_Mem(CreateView):
   model = Prod_Mem
@@ -65,5 +69,8 @@ class AddProd_Mem(CreateView):
      form.instance.user = self.request.user
      return super().form_valid(form)
 
+class DeleteActor(DeleteView):
+   model = Actor
+   success_url = '/movies/actor'
 
   

@@ -25,8 +25,8 @@
                     {% if user.is_authenticated %}
                         <li><a href="{% url 'index' %}">Dream Movies</a></li>
                         <li><a href="{% url 'add_movie' %}">Add a Movie</a></li>
-                        <li><a href="{% url 'actors' %}">Actors</a></li>
-                        <li><a href="{% url 'production' %}">Production Members</a></li>
+                        <li><a href="{% url 'actors' %}">Add Actors</a></li>
+                        <li><a href="{% url 'production' %}">Add Production Members</a></li>
                         <li>
                             <form id="logout-form" method="post" action="{% url 'logout' %}">
                             {% csrf_token %}
