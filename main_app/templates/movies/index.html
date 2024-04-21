@@ -2,7 +2,6 @@
 {% block content %}
 
 <h1>Fantasy Movies List</h1>
-<!-- <h3>index page</h3> -->
 
 {% for movie in movies %}
     <a href="{% url 'detail' movie.id %}">
@@ -14,10 +13,27 @@
             </div>
         </div>
     </a>
-
-
-
 {% endfor %}
+<table>
+    <thead>
+        <tr>
+            <th>Movie</th>
+            <th>Genre</th>
+            <th>Release Year</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for movie in movies %}
+        <tr class="index_pick" onclick="window.location='{% url 'detail' movie.id %}';" style="cursor:pointer;">
+            <td>{{ movie.name }}</td>
+            <td>{{ movie.get_genre_display }}</td>
+            <td>{{ movie.release_year }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
 
 
 {% endblock %}
