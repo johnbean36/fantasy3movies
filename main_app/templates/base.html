@@ -47,8 +47,8 @@
                         </form>
                     </li>
                     {% else %}
-                        <li class="nav-itme"><a class="nav-link" href="{% url 'signup' %}">Sign Up</a></li>
-                        <li class="nav-itme"><a class="nav-link" href="{% url 'login' %}">Log In</a></li>
+                        <li class="nav-itme" id="signin-button"><a class="nav-link" href="{% url 'signup' %}">Sign Up</a></li>
+                        <li class="nav-itme" id="login-button"><a class="nav-link" href="{% url 'login' %}">Log In</a></li>
                     {% endif %}
                 </ul>
             </div>
