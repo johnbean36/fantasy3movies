@@ -7,9 +7,33 @@
 <table class="table">
     {{ form.as_table }}
 </table>
-<input type="submit" value="Submit!" class="btn btn-primary">
+<input type="submit" value="Submit!" class="btn btn-secondary">
 </form>
-
+<br><br>
+<div class="divider"></div>
+{% if prod_list %}
+<table class="table">
+  <thead>
+      <tr>
+          <th>Name</th>
+          <th>Role</th>
+      </tr>
+  </thead>
+  <tbody>
+    {% for prod_mem in prod_list %}
+    <tr>
+        <td>{{prod_mem.name}}</td>
+        <td>{% if prod_mem.role == 'D' %}Director
+            {% elif prod_mem.role == 'S' %}Screen Writer
+            {% else %}Producer
+            {% endif %}</td>
+        <td><a href="{% url 'delete_prod' prod_mem.id %}" class="btn btn-primary">Delete</a></td>
+        <td></td>            
+    </tr>
+     {% endfor %}
+</tbody>
+</table>
+{% endif %}
 <!-- We never learn jQuery but a stack overflow article I found said i needed this code to get Materialize to initialize the dropdown menu-->
 <script>
     $(document).ready(function(){
