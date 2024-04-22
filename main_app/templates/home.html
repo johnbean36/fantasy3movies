@@ -1,11 +1,55 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+{% block content %}
+<div class="container">
+  <div class="row">
+      <div class="col">
+         <h2>About Us</h2>
+         <hr />
+      </div>
+  </div>
+  <div class="row row-content">
+      <div class="col-sm-6">
+          <p>We present a curated database of the best campsites in the vast woods and backcountry of the World Wide Web Wilderness. We increase access to adventure for the public while promoting safe and respectful use of resources. The expert wilderness trekkers on our staff personally verify each campsite to make sure that they are up to our standards. We also present a platform for campers to share reviews on campsites they have visited with each other.</p>
+      </div>
+  </div>
 
-<div class ="container">
-  <h1 class="text-sm-left">Fantasy 3 Movies</h1>
-    <section class ="appDescription">
-        <p class="text-center">Have you ever watched a movie and thought a different cast or director could have done a better job?<br>
-        With Fantasy 3 Movies, you can insert you dream cast into any movie to really show off your creativity!</p>
-    </section>
 </div>
+<div class="container">
+  <div class="row">
+      <div class="col">
+         <h2>Movie</h2>
+         <hr />
+      </div>
+  </div>
+  <!-- Movie Info -->
+  <div class="row">
+      <!-- Movie Title and poster -->
+      <div class="col-md-6">
+          <div class="card border border-secondary" style="width: 100%">
+              <img src="https://assets-prd.ignimgs.com/2024/01/24/dune2-insta-vert-montage-1638x2048-intl-1706086846940.jpg" class="img-fluid card-img-top" alt="movie poster">
+              <div class="card-body">
+                  <h5 class="card-title">Dune</h5>
+                  
+              </div>
+          </div>
+      </div>
+      <!-- Movie detaila -->
+      <div class="col-md-6">
+          <div class="card border border-secondary">
+              <div class="card-header">
+                  Movie Info
+              </div>
+              <div class="card-body">
+                  <h6 class="card-title">Genre</h6>
+                  <p class="card-text ">Sci-Fi</p>
+                  <h6 class="card-title">Replease Year</h6>
+                  <p class="card-text">2024</p>
+                  <h6 class="card-title">Synopsis</h6>
+                  <p class="card-text">Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family.</p>
+
+              </div>
+            </div>
+      </div>
+  </div>
 
 {% endblock %}
