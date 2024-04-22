@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Movie, Actor, Prod_Mem
-from django.views.generic import DeleteView
+from django.views.generic import DeleteView, UpdateView
 
 # Create your views here.
 
@@ -18,6 +18,9 @@ def movies_index(request):
     return render(request, 'movies/index.html', {
        'movies': movies
     })
+
+def poster_search(request):
+   return render(request, 'movies/poster.html')
 
 def movies_detail(request, movie_id):
     movie = Movie.objects.get(id=movie_id)
@@ -82,4 +85,10 @@ class DeleteProd(DeleteView):
    model = Prod_Mem
    success_url = '/movies/production'
 
-  
+class DeleteMovie(DeleteView):
+   model = Movie
+   success_url = '/movies/'
+
+class MovieUpdate(UpdateView):
+   model = Movie
+   fields = ['genre', 'description', 'release_year']
