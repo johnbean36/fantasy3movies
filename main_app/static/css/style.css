@@ -19,6 +19,10 @@ header h2 {
 footer {
   background-image: linear-gradient( #d3d6db, white);
   padding: 20px 0;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }
 
 .jumbotron {
@@ -46,3 +50,13 @@ footer {
 }
 
 
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #f8f9fa;
+  color: #6c757d;
+  text-align: center;
+  padding: 10px 0;
+}
