@@ -10,6 +10,12 @@ from django.views.generic import DeleteView
 
 # Create your views here.
 
+def actor_dropdown(request):
+   actors = Actor.objects.all()
+   return render(request,'movies/detail.html',{
+      'actors': actors
+    })
+
 def home(request):
     return render(request, 'home.html')
 
@@ -21,9 +27,16 @@ def movies_index(request):
 
 def movies_detail(request, movie_id):
     movie = Movie.objects.get(id=movie_id)
+    actors_in_movie = movie.actor.all()
+    actors_not_in_movie = Actor.objects.exclude(id__in=movie.actor.all().values_list('id'))
+    print(actors_not_in_movie)
     return render(request, 'movies/detail.html', {
-       'movie': movie
+       'movie': movie, 'actors_not_in_movie': actors_not_in_movie
     })
+
+def actor_in_movie(request, movie_id, actor_id):
+   Movie.objects.get(id=movie_id).actors.add(actor_id)
+   return redirect ('detail', movie_id=movie_id)
 
 def signup(request):
   error_message = ''

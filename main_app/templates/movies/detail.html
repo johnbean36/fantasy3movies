@@ -6,23 +6,18 @@
 <div class="container">
   <div class="row">
       <div class="col">
-         <h2>{{ movie.name }}</h2>
+         <h2 class="movie_title">{{ movie.name }}</h2>
          <hr />
       </div>
   </div>
-  <!-- Movie Info -->
-  <div class="row">
-      <!-- Movie Title and poster -->
+
+  <div class="row"> 
       <div class="col-md-6">
           <div class="card border border-secondary" style="width: 100%">
               <img src="https://assets-prd.ignimgs.com/2024/01/24/dune2-insta-vert-montage-1638x2048-intl-1706086846940.jpg" class="img-fluid card-img-top" alt="movie poster">
-              <!-- <div class="card-body">
-                  <h5 class="card-title">Placeholder Poster</h5>
-                  
-              </div> -->
           </div>
       </div>
-      <!-- Movie detaila -->
+
       <div class="col-md-6">
           <div class="card border border-secondary">
               <div class="card-header">
@@ -35,11 +30,78 @@
                   <p class="card-text">{{ movie.release_year }}</p>
                   <h6 class="card-title">Synopsis</h6>
                   <p class="card-text">{{ movie.description }}</p>
-
               </div>
             </div>
       </div>
   </div>
+  <hr />
+
+  <div class="row">
+    <div class="col-md-6">
+        <h2>{{ movie.name }} Dream Cast</h2>
+        <!-- % for actor in movie.actors.all % -->
+        <div class="card border border-secondary">
+            <div class="card-header">
+                Current Actors
+            </div>
+            <div class="card-body">
+                <ul>
+                    <li>{{ actor.name }}</li>
+                </ul>
+            </div>
+        </div>
+        <!-- % endfor % -->
+    </div>
+    
+    <div class="col-md-6">
+        <h2>{{ movie.name }} Dream Crew</h2>
+        <div class="card border border-secondary">
+            <div class="card-header">
+                Current Crew
+            </div>
+            <div class="card-body">
+                <ul>
+                    <li>{{ actor.name }}</li> 
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Add an Actor to this Movie</h2>
+            <div class="card border border-secondary">
+                <div class="card-header">
+                    Actor Index
+                </div>
+                <div class="card-body">
+                    <form>
+                        <select name="actors">
+                            {% for actor in actors_not_in_movie %}
+                                <option value="{{ actor.id }}">{{ actor.name }}</option>
+                            {% endfor %}
+                        </select>
+                        <input type="submit" value="Add to Movie">
+                    </form>
+                </div>
+            </div>
+            <a class= 'add' href="{% url 'actors' %}">Not listed? Add them here!</a>
+        </div>
+        
+        <div class="col-md-6">
+            <h2>Add Crew</h2>
+            <div class="card border border-secondary">
+                <div class="card-header">
+                    Actors
+                </div>
+                <div class="card-body">
+                  
+                </div>
+            </div>
+            <a class= 'add' href="{% url 'production' %}">Not listed? Add them here!</a>
+        </div>
+
+</div>
 
 
 
