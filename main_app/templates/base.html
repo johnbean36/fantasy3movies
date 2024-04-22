@@ -1,54 +1,85 @@
 {% load static %}
+{% load bootstrap5 %}
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
     <title>Fantasy3Movies</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/0f292e568a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-social.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster|Open+Sans">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <header class="navbar">
-        <nav>
-            <div class="nav-wrapper">
-                <ul>
-                    <li><a href="{% url 'home' %}">Fantasy3Movies</a></li>
-                </ul>
-                <ul class="right">
+    <header class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1 class="text-sm-left">Fantasy 3 Movies</h1>
+                    <h2 class="text-sm-center">Make your most fantastic movie!</h2>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="navbar navbar-expand-sm navbar-dark sticky-top">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-targe="#f3mNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="f3mNavbar">
+                
+                <ul class="navbar-nav">
+                    <li class="nav-itme"><a class="nav-link" href="{% url 'home' %}"><i class="fa fa-home fa-lg"></i>Home</a></li>
                     {% if user.is_authenticated %}
-                        <li><a href="{% url 'index' %}">Dream Movies</a></li>
-                        <li><a href="{% url 'add_movie' %}">Add a Movie</a></li>
-                        <li><a href="{% url 'actors' %}">Add Actors</a></li>
-                        <li><a href="{% url 'production' %}">Add Production Members</a></li>
-                        <li>
-                            <form id="logout-form" method="post" action="{% url 'logout' %}">
-                            {% csrf_token %}
-                            <button type="submit" class='btn-flat white-text'>Log Out</button>
-                            </form>
-                        </li>
-                    {% else %}    
-                       
-                        <li><a href="{% url 'signup' %}">Sign Up</a></li>
-                        <li><a href="{% url 'login' %}">Log In</a></li>
-                        {% endif %}    
+                    <li class="nav-itme"><a class="nav-link" href="{% url 'index' %}"><i class="fa fa-th-list fa-lg"></i>Dream Movies</a></li>
+                    <li class="nav-itme"><a class="nav-link" href="{% url 'add_movie' %}"><i class="fa fa-film fa-lg"></i>Add a Movie</a></li>
+                    <li class="nav-itme"><a class="nav-link" href="{% url 'actors' %}"><i class="fa fa-address-card-o fa-lg"></i>Add Actors</a></li>
+                    <li class="nav-itme"><a class="nav-link" href="{% url 'production' %}"><i class="fa fa-video fa-lg"></i>Crew</a></li>
+                    <li class="nav-itme">
+                        <form id="logout-form" method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class='btn-flat white-text'>Log Out</button>
+                        </form>
+                    </li>
+                    {% else %}
+                        <li class="nav-itme"><a class="nav-link" href="{% url 'signup' %}">Sign Up</a></li>
+                        <li class="nav-itme"><a class="nav-link" href="{% url 'login' %}">Log In</a></li>
+                    {% endif %}
                 </ul>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
     <main class="container">
         {% block content %}
         {% endblock %}
     </main>
-  	<footer class="page-footer">
-       <div class="right">Fantasy3Movies &copy;&nbsp; 2024 </div>
-    </footer>
 </body>
+<footer>
+    <div class="container">
+        <div class="row">             
+            <div class="col-sm-6">
+                <h5>Social</h5>
+                <a class="btn btn-social-icon btn-instagram" href="http://instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+                <a class="btn btn-social-icon btn-facebook" href="http://facebook.com/"><i class="fa-brands fa-facebook"></i></a>
+                <a class="btn btn-social-icon btn-instagram" href="http://twitter.com/"><i class="fa-brands fa-x-twitter"></i></a>
+                <a class="btn btn-social-icon btn-google" href="http://youtube.com/"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+            <br/>
+            <div class="col-sm-6 text-sm-left">
+                <h5>Contact</h5>
+                <a role="button" class="btn btn-link text-secondary" href=""><i class="fa fa-phone fa=lg"></i>1234567879</a>
+                <br>
+                <a role="button" class="btn btn-link text-secondary" href="mailto:ouremail@f3m.com"><i class="fa fa-envelope fa=lg"></i>ouremail@f3m.com</a>
+            </div>                
+       </div>
+    </div>
+</footer>
+<script src="https://unpkg.com/@popperjs/core@2"></script>
 </html>
