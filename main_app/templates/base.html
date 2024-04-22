@@ -40,10 +40,10 @@
                     <li class="nav-itme"><a class="nav-link" href="{% url 'add_movie' %}"><i class="fa fa-film fa-lg"></i>Add a Movie</a></li>
                     <li class="nav-itme"><a class="nav-link" href="{% url 'actors' %}"><i class="fa fa-address-card-o fa-lg"></i>Add Actors</a></li>
                     <li class="nav-itme"><a class="nav-link" href="{% url 'production' %}"><i class="fa fa-video fa-lg"></i>Crew</a></li>
-                    <li class="nav-itme">
+                    <li class="nav-itme" id="logout-button" >
                         <form id="logout-form" method="post" action="{% url 'logout' %}">
                         {% csrf_token %}
-                        <button type="submit" class='btn-flat white-text'>Log Out</button>
+                        <button type="submit" class='btn btn-outline-dark btn-md'>Log Out</button>
                         </form>
                     </li>
                     {% else %}
