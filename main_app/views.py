@@ -68,9 +68,18 @@ class AddProd_Mem(CreateView):
   def form_valid(self, form):
      form.instance.user = self.request.user
      return super().form_valid(form)
+  
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context["prod_list"] = Prod_Mem.objects.all()
+    return context
 
 class DeleteActor(DeleteView):
    model = Actor
    success_url = '/movies/actor'
+
+class DeleteProd(DeleteView):
+   model = Prod_Mem
+   success_url = '/movies/production'
 
   
