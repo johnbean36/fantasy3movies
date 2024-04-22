@@ -9,5 +9,6 @@ urlpatterns = [
     path('movies/actor/', views.AddActor.as_view(), name='actors'),
     path('movies/production/', views.AddProd_Mem.as_view(), name='production'),
     path('accounts/signup/', views.signup, name='signup'),
-    path('movies/actor/<int:pk>/delete/', views.DeleteActor.as_view(), name='delete_actor')
+    path('movies/actor/<int:pk>/delete/', views.DeleteActor.as_view(), name='delete_actor'),
+    path('movies/prod_mem/<int:pk>/delete/', views.DeleteProd.as_view(), name='delete_prod')
 ]
