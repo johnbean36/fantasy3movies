@@ -2,15 +2,15 @@
 {% block content %}
 <form action="" Method="POST">
     {% csrf_token %}
-<table>
+<table class="table">
     {{ form.as_table }}
 </table>
-<input type="submit" value="Submit!" class="btn">
+<input type="submit" value="Submit!" class="btn btn-primary">
 </form>
 <br><br>
 <div class="divider"></div>
 {% if actor_list %}
-<table>
+<table class="table">
     <thead>
         <tr>
             <th>Name</th>
@@ -24,7 +24,7 @@
             <td>{{actor.name}}</td>
             <td>{{actor.dob}}</td>
             <td>{{actor.nationality}}</td>
-            <td><a href="{% url 'delete_actor' actor.id %}" class="btn">Delete</a></td>
+            <td><a href="{% url 'delete_actor' actor.id %}" class="btn btn-primary">Delete</a></td>
             <td></td>            
         </tr>
          {% endfor %}
