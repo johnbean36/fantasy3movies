@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if object %}
+  <h1>Edit <span class="teal-text">{{ object.name }}</span></h1>
+{% else %}
+  <h1>Add Movie</h1>
+{% endif %}
+
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <table>
+    <tr>
+      <th class="form"><label for="id_name">Movie Name</label></th>
+      <td>{{ form.name }}</td>
+    </tr>
+    <tr>
+      <th class="form"><label for="id_genre" class="form">Genre</label></th>
+      <td>{{ form.genre }}</td>
+    </tr>
+    <tr>
+      <th class="form"><label for="id_description">Description</label></th>
+      <td>{{ form.description }}</td>
+    </tr>
+    <tr>
+      <th class="form"><label for="id_release_year">Release Year</label></th>
+      <td>{{ form.release_year }}</td>
+    </tr>
+    <tr>
+      <th class="form"></th>
+      <td>{{form.release_year.errors}}</td>
+    </tr>
+  </table>
+  <input type="submit" value="Submit!" class="btn btn-primary">
+</form>
+
+<!-- We never learn jQuery but a stack overflock article I found said i needed this code to get Materialize to initialize the dropdown menu-->
+<script>
+  $(document).ready(function(){
+    $('select').formSelect();
+  });
+</script>
+{% endblock %}
