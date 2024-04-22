@@ -35,13 +35,13 @@
             <div class="collapse navbar-collapse" id="f3mNavbar">
                 
                 <ul class="navbar-nav">
-                    <li class="nav-itme"><a class="nav-link" href="{% url 'home' %}"><i class="fa fa-home fa-lg"></i>Home</a></li>
+                    <li class="nav-itme"><a class="nav-link" href="{% url 'home' %}"><i class="fa fa-home fa-lg"></i> Home</a></li>
                     {% if user.is_authenticated %}
-                    <li class="nav-itme"><a class="nav-link" href="{% url 'index' %}"><i class="fa fa-th-list fa-lg"></i>Dream Movies</a></li>
-                    <li class="nav-itme"><a class="nav-link" href="{% url 'add_movie' %}"><i class="fa fa-film fa-lg"></i>Add a Movie</a></li>
-                    <li class="nav-itme"><a class="nav-link" href="{% url 'actors' %}"><i class="fa fa-address-card-o fa-lg"></i>Add Actors</a></li>
-                    <li class="nav-itme"><a class="nav-link" href="{% url 'production' %}"><i class="fa fa-video fa-lg"></i>Crew</a></li>
-                    <li class="nav-itme"><a class="nav-link" href="{% url 'poster' %}"><i class="bi bi-image"></i>Movie Poster</a></li>
+                    <li class="nav-itme"><a class="nav-link" href="{% url 'index' %}"><i class="fa fa-th-list fa-lg"></i> Dream Movies</a></li>
+                    <li class="nav-itme"><a class="nav-link" href="{% url 'add_movie' %}"><i class="fa fa-film fa-lg"></i> Add a Movie</a></li>
+                    <li class="nav-itme"><a class="nav-link" href="{% url 'actors' %}"><i class="fa fa-address-card-o fa-lg"></i> Add Actors</a></li>
+                    <li class="nav-itme"><a class="nav-link" href="{% url 'production' %}"><i class="fa fa-video fa-lg"></i> Crew</a></li>
+                    <li class="nav-itme"><a class="nav-link" href="{% url 'poster' %}"><i class="fas fa-file-image"></i> Movie Poster</a></li>
                     <li class="nav-itme">
                         <form id="logout-form" method="post" action="{% url 'logout' %}">
                         {% csrf_token %}
