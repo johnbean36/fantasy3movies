@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Movie, Actor, Prod_Mem
 from django.views.generic import DeleteView, UpdateView
+import requests
 
 # Create your views here.
 
@@ -27,6 +28,26 @@ def movies_detail(request, movie_id):
     return render(request, 'movies/detail.html', {
        'movie': movie
     })
+
+def search(request):
+    url = "https://api.themoviedb.org/3/search/movie"
+    api_key = api_key
+    query = request.GET.get('query', '')
+    params = {
+        "include_adult": "false",
+        "language": "en-US",
+        "page": 1,
+        "api_key": api_key,
+        "query": query
+    }
+    headers = {
+        "accept": "application/json"
+    }
+
+    response = requests.get(url, params=params, headers=headers)
+    data = response.json()
+
+    return render(request, 'movies/results.html', {'data': data})
 
 def signup(request):
   error_message = ''
@@ -87,7 +108,7 @@ class DeleteProd(DeleteView):
 
 class DeleteMovie(DeleteView):
    model = Movie
-   success_url = '/movies/'
+   success_url = '/movies'
 
 class MovieUpdate(UpdateView):
    model = Movie

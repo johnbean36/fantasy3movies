@@ -13,5 +13,6 @@ urlpatterns = [
     path('movies/prod_mem/<int:pk>/delete/', views.DeleteProd.as_view(), name='delete_prod'),
     path('movies/<int:pk>/delete/', views.DeleteMovie.as_view(), name='delete_movie'),
     path('movies/<int:pk>/edit', views.MovieUpdate.as_view(), name="update"),
-    path('movies/poster', views.poster_search, name='poster')
+    path('movies/poster', views.poster_search, name='poster'),
+    path('movies/poster/search', views.search, name='search')
 ]
