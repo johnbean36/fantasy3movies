@@ -28,12 +28,11 @@
     </header>
 
     <nav class="navbar navbar-expand-sm navbar-dark sticky-top">
-        <div class="container">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-targe="#f3mNavbar">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#f3mNavbar" aria-controls="f3mNavbar" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="f3mNavbar">
-                
                 <ul class="navbar-nav">
                     <li class="nav-itme"><a class="nav-link" href="{% url 'home' %}"><i class="fa fa-home fa-lg"></i>Home</a></li>
                     {% if user.is_authenticated %}
