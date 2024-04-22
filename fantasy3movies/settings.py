@@ -17,7 +17,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 api_key = os.getenv('API_KEY')
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = 'django-insecure-0bb#eik!%cou(*jfo87%j!i@%_4ysdpry684+k&#x&kwi3#63a'
 TMDB_API_TOKEN = os.getenv('TMDB_API_TOKEN')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
