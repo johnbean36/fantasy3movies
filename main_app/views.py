@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Movie, Actor, Prod_Mem
 from django.views.generic import DeleteView
+from .forms import AssocActorForm
+
 
 # Create your views here.
 
@@ -27,16 +29,36 @@ def movies_index(request):
 
 def movies_detail(request, movie_id):
     movie = Movie.objects.get(id=movie_id)
-    actors_in_movie = movie.actor.all()
-    actors_not_in_movie = Actor.objects.exclude(id__in=movie.actor.all().values_list('id'))
-    print(actors_not_in_movie)
-    return render(request, 'movies/detail.html', {
-       'movie': movie, 'actors_not_in_movie': actors_not_in_movie
-    })
+    if request.method == 'POST':
+      print('working')
+      form = AssocActorForm(request.POST)
+      if form.is_valid():
+        selectedActor = form.cleaned_data["actors"]
+        print('working')
+        movie.actor.add(selectedActor)
+        return redirect ('detail', movie_id=movie_id)
+    else:
+       
+      form = AssocActorForm(request.POST)
+    
+      actors_in_movie = movie.actor.all()
+      actors_not_in_movie = Actor.objects.exclude(id__in=movie.actor.all().values_list('id'))
+      return render(request, 'movies/detail.html', {
+        'movie': movie, 'actors_not_in_movie': actors_not_in_movie, "form": form
+      })
 
-def actor_in_movie(request, movie_id, actor_id):
-   Movie.objects.get(id=movie_id).actors.add(actor_id)
-   return redirect ('detail', movie_id=movie_id)
+def actor_in_movie(request, movie_id):
+   movie = Movie.objects.get(id=movie_id)
+   if request.method == 'POST':
+      form = AssocActorForm(request.POST)
+      if form.is_valid():
+        selectedActor = form.cleaned_data["actors"]
+        print('not working')
+        movie.actor.add(selectedActor)
+        return redirect ('detail', movie_id=movie_id)
+   else:
+    return redirect ('movies/')
+        
 
 def signup(request):
   error_message = ''

@@ -39,18 +39,20 @@
   <div class="row">
     <div class="col-md-6">
         <h2>{{ movie.name }} Dream Cast</h2>
-        <!-- % for actor in movie.actors.all % -->
+        
         <div class="card border border-secondary">
             <div class="card-header">
                 Current Actors
             </div>
             <div class="card-body">
+                {% for actor in movie.actor.all %}
                 <ul>
                     <li>{{ actor.name }}</li>
                 </ul>
+                {% endfor %}
             </div>
         </div>
-        <!-- % endfor % -->
+        
     </div>
     
     <div class="col-md-6">
@@ -69,22 +71,21 @@
 
     <div class="row">
         <div class="col-md-6">
+            
             <h2>Add an Actor to this Movie</h2>
             <div class="card border border-secondary">
                 <div class="card-header">
                     Actor Index
                 </div>
                 <div class="card-body">
-                    <form>
-                        <select name="actors">
-                            {% for actor in actors_not_in_movie %}
-                                <option value="{{ actor.id }}">{{ actor.name }}</option>
-                            {% endfor %}
-                        </select>
-                        <input type="submit" value="Add to Movie">
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit">Add to Movie</button>
                     </form>
                 </div>
             </div>
+            
             <a class= 'add' href="{% url 'actors' %}">Not listed? Add them here!</a>
         </div>
         
