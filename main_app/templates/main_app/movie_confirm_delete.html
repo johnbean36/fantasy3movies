@@ -3,7 +3,7 @@
 <h1>Confirm you want to Delete {{object.name}}</h1>
 <form action="" method="POST">
     {% csrf_token %}
-    <input class="btn btn-primary" type="submit" value="Delete">
-    <a href="{% url 'detail'%}" class="btn btn-primary">Cancel</a>
+    <input class="btn btn-secondary" type="submit" value="Delete">
+    <a href="{% url 'detail'%}" class="btn btn-secondary">Cancel</a>
 </form>
 {% endblock %}
