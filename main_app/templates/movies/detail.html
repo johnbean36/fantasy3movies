@@ -2,112 +2,112 @@
 {% block content %}
 
 
-</div>
+
 <div class="container">
-  <div class="row">
-      <div class="col">
-         <h2 class="movie_title">{{ movie.name }}</h2>
-         <hr />
-      </div>
-  </div>
-
-  <div class="row"> 
-      <div class="col-md-6">
-          <div class="card border border-secondary" style="width: 100%">
-              <img src="https://assets-prd.ignimgs.com/2024/01/24/dune2-insta-vert-montage-1638x2048-intl-1706086846940.jpg" class="img-fluid card-img-top" alt="movie poster">
-          </div>
-      </div>
-
-      <div class="col-md-6">
-          <div class="card border border-secondary">
-              <div class="card-header">
-                  Movie Info
-              </div>
-              <div class="card-body">
-                  <h6 class="card-title">Genre</h6>
-                  <p class="card-text ">{{ movie.get_genre_display }}</p>
-                  <h6 class="card-title">Replease Year</h6>
-                  <p class="card-text">{{ movie.release_year }}</p>
-                  <h6 class="card-title">Synopsis</h6>
-                  <p class="card-text">{{ movie.description }}</p>
-              </div>
-            </div>
-      </div>
-  </div>
-  <hr />
-
-  <div class="row">
-    <div class="col-md-6">
-        <h2>{{ movie.name }} Dream Cast</h2>
-        
-        <div class="card border border-secondary">
-            <div class="card-header">
-                Current Actors
-            </div>
-            <div class="card-body">
-                {% for actor in movie.actor.all %}
-                <ul>
-                    <li>{{ actor.name }}</li>
-                </ul>
-                {% endfor %}
-            </div>
-        </div>
-        
-    </div>
-    
-    <div class="col-md-6">
-        <h2>{{ movie.name }} Dream Crew</h2>
-        <div class="card border border-secondary">
-            <div class="card-header">
-                Current Crew
-            </div>
-            <div class="card-body">
-                {% for prod_mem in movie.prod_mem.all %}
-                <ul>
-                    <li>{{ prod_mem.name }}</li> 
-                </ul>
-                {% endfor %}
-            </div>
+    <!-- movie title -->
+    <div class="row">
+        <div class="col">
+            <h2 class="movie_title">{{ movie.name }}</h2>
+            <hr />
         </div>
     </div>
+    <!-- movie poster and movie info -->
+    <div class="row"> 
+        <div class="col-md-6">
+            <div class="card border border-secondary" style="width: 100%">
+                <img src="https://assets-prd.ignimgs.com/2024/01/24/dune2-insta-vert-montage-1638x2048-intl-1706086846940.jpg" class="img-fluid card-img-top" alt="movie poster">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card border border-secondary">
+                <div class="card-header">
+                    Movie Info
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">Genre</h6>
+                    <p class="card-text ">{{ movie.get_genre_display }}</p>
+                    <h6 class="card-title">Replease Year</h6>
+                    <p class="card-text">{{ movie.release_year }}</p>
+                    <h6 class="card-title">Synopsis</h6>
+                    <p class="card-text">{{ movie.description }}</p>
+                </div>
+                </div>
+        </div>
+    </div>
+    <hr />
 
     <div class="row">
+        <!-- Current Cast -->
         <div class="col-md-6">
-            
+            <h2>{{ movie.name }} Dream Cast</h2>
+            <div class="card border border-secondary">
+                <div class="card-header">
+                    Current Actors
+                </div>
+                <div class="card-body">
+                    {% for actor in movie.actor.all %}
+                    <ul>
+                        <li>{{ actor.name }}</li>
+                    </ul>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!-- Current Crew -->
+        <div class="col-md-6">
+            <h2>{{ movie.name }} Dream Crew</h2>
+            <div class="card border border-secondary">
+                <div class="card-header">
+                    Current Crew
+            </div>
+            <div class="card-body">
+                    {% for prod_mem in movie.prod_mem.all %}
+                    <ul>
+                        <li>{{ prod_mem.name }}</li> 
+                    </ul>
+                    {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Cast and Crew -->
+    <div class="row">
+        <!-- Add Cast -->
+        <div class="col-md-6">
             <h2>Add an Actor to this Movie</h2>
             <div class="card border border-secondary">
                 <div class="card-header">
-                    Actor Index
+                        Actor Index
                 </div>
                 <div class="card-body">
                     <form name="AssocActors" method="POST">
-                        {% csrf_token %}
-                        {{ actor_form.as_p }}
+                            {% csrf_token %}
+                            {{ actor_form.as_p }}
                         <button type="submit">Add to Movie</button>
                     </form>
                 </div>
             </div>
-            
             <a class= 'add' href="{% url 'actors' %}">Not listed? Add them here!</a>
         </div>
-        
+            
         <div class="col-md-6">
-            <h2>Add Crew</h2>
-            <div class="card border border-secondary">
-                <div class="card-header">
-                    Crew
+                <h2>Add Crew</h2>
+                <div class="card border border-secondary">
+                    <div class="card-header">
+                        Crew
+                    </div>
+                    <div class="card-body">
+                        <form name="AssocCrew" method="POST">
+                            {% csrf_token %}
+                            {{ crew_form.as_p }}
+                            <button type="submit">Add to Movie</button>
+                        </form>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <form name="AssocCrew" method="POST">
-                        {% csrf_token %}
-                        {{ crew_form.as_p }}
-                        <button type="submit">Add to Movie</button>
-                    </form>
-                </div>
-            </div>
-            <a class= 'add' href="{% url 'production' %}">Not listed? Add them here!</a>
+                <a class= 'add' href="{% url 'production' %}">Not listed? Add them here!</a>
         </div>
-
+    </div>
 </div>
 
 
