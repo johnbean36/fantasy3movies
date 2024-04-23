@@ -10,13 +10,6 @@ from .forms import AssocActorForm, AssocCrew
 from django.views.generic import DeleteView, UpdateView
 import requests, os
 
-# Create your views here.
-
-# def actor_dropdown(request):
-#    actors = Actor.objects.all()
-#    return render(request,'movies/detail.html',{
-#       'actors': actors
-#     })
 
 def home(request):
     return render(request, 'home.html')
