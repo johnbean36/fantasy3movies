@@ -8,14 +8,15 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Movie, Actor, Prod_Mem
 from .forms import AssocActorForm
 from django.views.generic import DeleteView, UpdateView
+import requests
 
 # Create your views here.
 
-def actor_dropdown(request):
-   actors = Actor.objects.all()
-   return render(request,'movies/detail.html',{
-      'actors': actors
-    })
+# def actor_dropdown(request):
+#    actors = Actor.objects.all()
+#    return render(request,'movies/detail.html',{
+#       'actors': actors
+#     })
 
 def home(request):
     return render(request, 'home.html')
@@ -31,16 +32,14 @@ def poster_search(request):
 
 def movies_detail(request, movie_id):
     movie = Movie.objects.get(id=movie_id)
+    
     if request.method == 'POST':
-      print('working')
       form = AssocActorForm(request.POST)
       if form.is_valid():
         selectedActor = form.cleaned_data["actors"]
-        print('working')
         movie.actor.add(selectedActor)
         return redirect ('detail', movie_id=movie_id)
     else:
-       
       form = AssocActorForm(request.POST)
     
       actors_in_movie = movie.actor.all()
@@ -61,6 +60,26 @@ def actor_in_movie(request, movie_id):
    else:
     return redirect ('movies/')
         
+
+def search(request):
+    url = "https://api.themoviedb.org/3/search/movie"
+    api_key = api_key
+    query = request.GET.get('query', '')
+    params = {
+        "include_adult": "false",
+        "language": "en-US",
+        "page": 1,
+        "api_key": api_key,
+        "query": query
+    }
+    headers = {
+        "accept": "application/json"
+    }
+
+    response = requests.get(url, params=params, headers=headers)
+    data = response.json()
+
+    return render(request, 'movies/results.html', {'data': data})
 
 def signup(request):
   error_message = ''
@@ -121,7 +140,7 @@ class DeleteProd(DeleteView):
 
 class DeleteMovie(DeleteView):
    model = Movie
-   success_url = '/movies/'
+   success_url = '/movies'
 
 class MovieUpdate(UpdateView):
    model = Movie
