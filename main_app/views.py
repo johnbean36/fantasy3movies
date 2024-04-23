@@ -6,17 +6,17 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Movie, Actor, Prod_Mem
-from .forms import AssocActorForm
+from .forms import AssocActorForm, AssocCrew
 from django.views.generic import DeleteView, UpdateView
 import requests
 
 # Create your views here.
 
-def actor_dropdown(request):
-   actors = Actor.objects.all()
-   return render(request,'movies/detail.html',{
-      'actors': actors
-    })
+# def actor_dropdown(request):
+#    actors = Actor.objects.all()
+#    return render(request,'movies/detail.html',{
+#       'actors': actors
+#     })
 
 def home(request):
     return render(request, 'home.html')
@@ -32,36 +32,35 @@ def poster_search(request):
 
 def movies_detail(request, movie_id):
     movie = Movie.objects.get(id=movie_id)
+    
     if request.method == 'POST':
-      print('working')
-      form = AssocActorForm(request.POST)
-      if form.is_valid():
-        selectedActor = form.cleaned_data["actors"]
-        print('working')
+      actor_form = AssocActorForm(request.POST)
+      if actor_form.is_valid():
+        selectedActor = actor_form.cleaned_data["actors"]
         movie.actor.add(selectedActor)
         return redirect ('detail', movie_id=movie_id)
+      
+      crew_form = AssocCrew(request.POST)
+      if crew_form.is_valid():
+         selectedCrew = crew_form.cleaned_data["crew"]
+         movie.prod_mem.add(selectedCrew)
+         return redirect ('detail', movie_id=movie_id)
     else:
-       
-      form = AssocActorForm(request.POST)
-    
+      actor_form = AssocActorForm(request.POST)
+      crew_form = AssocCrew(request.POST)
       actors_in_movie = movie.actor.all()
       actors_not_in_movie = Actor.objects.exclude(id__in=movie.actor.all().values_list('id'))
+      crew_in_movie = movie.prod_mem.all()
+      crew_not_in_movie = Prod_Mem.objects.exclude(id__in=movie.prod_mem.all().values_list('id'))
+  
+
       return render(request, 'movies/detail.html', {
-        'movie': movie, 'actors_not_in_movie': actors_not_in_movie, "form": form
+        'movie': movie,
+        'actors_not_in_movie': actors_not_in_movie, 
+        "actor_form": actor_form,
+        "crew_form": crew_form
       })
 
-def actor_in_movie(request, movie_id):
-   movie = Movie.objects.get(id=movie_id)
-   if request.method == 'POST':
-      form = AssocActorForm(request.POST)
-      if form.is_valid():
-        selectedActor = form.cleaned_data["actors"]
-        print('not working')
-        movie.actor.add(selectedActor)
-        return redirect ('detail', movie_id=movie_id)
-   else:
-    return redirect ('movies/')
-        
 
 def search(request):
     url = "https://api.themoviedb.org/3/search/movie"

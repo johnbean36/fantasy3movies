@@ -62,9 +62,11 @@
                 Current Crew
             </div>
             <div class="card-body">
+                {% for prod_mem in movie.prod_mem.all %}
                 <ul>
-                    <li>{{ actor.name }}</li> 
+                    <li>{{ prod_mem.name }}</li> 
                 </ul>
+                {% endfor %}
             </div>
         </div>
     </div>
@@ -78,9 +80,9 @@
                     Actor Index
                 </div>
                 <div class="card-body">
-                    <form method="POST">
+                    <form name="AssocActors" method="POST">
                         {% csrf_token %}
-                        {{ form.as_p }}
+                        {{ actor_form.as_p }}
                         <button type="submit">Add to Movie</button>
                     </form>
                 </div>
@@ -93,10 +95,14 @@
             <h2>Add Crew</h2>
             <div class="card border border-secondary">
                 <div class="card-header">
-                    Actors
+                    Crew
                 </div>
                 <div class="card-body">
-                  
+                    <form name="AssocCrew" method="POST">
+                        {% csrf_token %}
+                        {{ crew_form.as_p }}
+                        <button type="submit">Add to Movie</button>
+                    </form>
                 </div>
             </div>
             <a class= 'add' href="{% url 'production' %}">Not listed? Add them here!</a>
