@@ -2,7 +2,6 @@
 {% block content %}
 
 
-
 <div class="container">
     <!-- movie title -->
     <div class="row">
@@ -32,7 +31,7 @@
                     <h6 class="card-title">Synopsis</h6>
                     <p class="card-text">{{ movie.description }}</p>
                 </div>
-                </div>
+            </div>
         </div>
     </div>
     <hr />
@@ -60,16 +59,16 @@
             <div class="card border border-secondary">
                 <div class="card-header">
                     Current Crew
-            </div>
-            <div class="card-body">
+                </div>
+                <div class="card-body">
                     {% for prod_mem in movie.prod_mem.all %}
                     <ul>
                         <li>{{ prod_mem.name }}</li> 
                     </ul>
                     {% endfor %}
+                </div>
             </div>
         </div>
-    </div>
 
     <!-- Add Cast and Crew -->
     <div class="row">
@@ -88,28 +87,26 @@
                     </form>
                 </div>
             </div>
-            <a class= 'add' href="{% url 'actors' %}">Not listed? Add them here!</a>
+            <a class= 'add text-secondary' href="{% url 'actors' %}">Not listed? Add them here!</a>
         </div>
-            
+             <!-- Add Crew -->
         <div class="col-md-6">
-                <h2>Add Crew</h2>
-                <div class="card border border-secondary">
-                    <div class="card-header">
-                        Crew
-                    </div>
-                    <div class="card-body">
-                        <form name="AssocCrew" method="POST">
+            <h2>Add Crew</h2>
+            <div class="card border border-secondary">
+                <div class="card-header">
+                    Crew
+                </div>
+                <div class="card-body">
+                    <form name="AssocCrew" method="POST">
                             {% csrf_token %}
                             {{ crew_form.as_p }}
                             <button type="submit">Add to Movie</button>
-                        </form>
-                    </div>
+                    </form>
                 </div>
-                <a class= 'add' href="{% url 'production' %}">Not listed? Add them here!</a>
+            </div>
+                <a class= 'add text-secondary' href="{% url 'production' %}">Not listed? Add them here!</a>
         </div>
     </div>
 </div>
-
-
 
 {% endblock %}
