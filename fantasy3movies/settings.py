@@ -21,7 +21,7 @@ api_key = os.getenv('API_KEY')
 TMDB_API_TOKEN = os.getenv('TMDB_API_TOKEN')
 import os
 import dj_database_url
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY=os.environ['SECRET_KEY']
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -87,11 +87,11 @@ WSGI_APPLICATION = 'fantasy3movies.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    #'default': {
-    #    'ENGINE': 'django.db.backends.postgresql',
-    #    'NAME': 'fantasy3movies',
-    #}
-    'default': dj_database_url.config(conn_max_age=600)
+    'default': {
+       'ENGINE': 'django.db.backends.postgresql',
+       'NAME': 'fantasy3movies',
+    }
+    # 'default': dj_database_url.config(conn_max_age=600)
 }
 
 
