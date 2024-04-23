@@ -4,7 +4,23 @@
 <form action="{% url 'search' %}" method="POST">
     {% csrf_token %}
     <label for="image">Enter a movie name to search:</label>
-    <input type="text">
+    <input type="text" name="genre">
     <input type="submit" value="Search" class="btn btn-secondary">
 </form>
+
+{% if data %}
+<ul>
+    {% for result in data.results %}
+    <li>
+        <form action="{% url 'search_id' result.id %}">
+            {% csrf_token %}
+            <button type="submit">{{ result.title }}</button>
+            </form>
+            {{result.overview}}
+            <br><br>
+    </li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
 {% endblock %}

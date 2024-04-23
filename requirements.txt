@@ -5,6 +5,8 @@ charset-normalizer==3.3.2
 dj-database-url==2.1.0
 Django==4.2.11
 django-bootstrap-v5==1.0.11
+django-environ==0.11.2
+gunicorn==22.0.0
 idna==3.7
 psycopg2-binary==2.9.9
 python-dotenv==1.0.1
