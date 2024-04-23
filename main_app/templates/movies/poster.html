@@ -1,0 +1,10 @@
+{% extends '../base.html' %}
+{% block content %}
+
+<form action="{% url 'search' %}" method="POST">
+    {% csrf_token %}
+    <label for="image">Enter a movie name to search:</label>
+    <input type="text">
+    <input type="submit" value="Search" class="btn btn-secondary">
+</form>
+{% endblock %}

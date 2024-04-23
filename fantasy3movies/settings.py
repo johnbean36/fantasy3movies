@@ -17,12 +17,11 @@ from dotenv import load_dotenv
 load_dotenv()
 
 api_key = os.getenv('API_KEY')
-# SECRET_KEY = os.getenv('SECRET_KEY')
-
-SECRET_KEY = 'django-insecure-0bb#eik!%cou(*jfo87%j!i@%_4ysdpry684+k&#x&kwi3#63a'
 
 TMDB_API_TOKEN = os.getenv('TMDB_API_TOKEN')
-
+import os
+import dj_database_url
+SECRET_KEY = os.environ['SECRET_KEY']
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -34,9 +33,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True if os.environ['MODE'] == 'dev' else False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -54,6 +53,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -87,10 +87,11 @@ WSGI_APPLICATION = 'fantasy3movies.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'fantasy3movies',
-    }
+    #'default': {
+    #    'ENGINE': 'django.db.backends.postgresql',
+    #    'NAME': 'fantasy3movies',
+    #}
+    'default': dj_database_url.config(conn_max_age=600)
 }
 
 
@@ -139,3 +140,5 @@ LOGOUT_REDIRECT_URL = '/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+STATIC_ROOT=os.path.join(BASE_DIR, "static/")

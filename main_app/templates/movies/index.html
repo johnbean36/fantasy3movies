@@ -2,18 +2,7 @@
 {% block content %}
 
 <h1>Fantasy Movies List</h1>
-<!--
-{% for movie in movies %}
-    <a href="{% url 'detail' movie.id %}">
-        <div class="card">
-            <div class="cart-co">
-                <span class="card-title">{{ movie.name }}</span>
-                <p>Genre: {{movie.get_genre_display}}</p>
 
-            </div>
-        </div>
-    </a>
-{% endfor %} -->
 
 <table class="table">
     <thead>
@@ -30,6 +19,8 @@
             <td>{{ movie.name }}</td>
             <td>{{ movie.get_genre_display }}</td>
             <td>{{ movie.release_year }}</td>
+            <td><a href="{% url 'delete_movie' movie.id %}" class="btn btn-secondary">Delete</a></td>
+            <td><a href="{% url 'update' movie.id %}" class="btn btn-secondary">Edit</a></td>
         </tr>
         {% endfor %}
     </tbody>
