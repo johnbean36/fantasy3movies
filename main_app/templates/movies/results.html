@@ -3,23 +3,25 @@
 
 
 <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{data.poster_path}}" alt="movie_poster" style="max-width: 70vmin; max-height: 70vmin;">
-
-<button id="saveButton">Add Poster</button>
+<form action="{% url 'add_poster' %}" method="POST" id="poster_form">
+    {% csrf_token %}
+    <select name="movie" id="movie_select">
+        {% for movie in movies %}
+        <option value="{{movie.id}}">{{movie.name}}</option>
+        {% endfor %}
+    </select>
+    <input type="hidden" name="poster" value="https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{data.poster_path}}">
+    <input type="submit" value="Add Movie">
+</form>
 
 <script>
-    document.getElementById("saveButton").addEventListener("click", function() {
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/save-image", true);
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                console.log("Image saved successfully!");
-            }
-        };
-        xhr.send(JSON.stringify({imageUrl: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{data.poster_path}}" }));
+    document.getElementById('poster_form').addEventListener('submit', (e)=>{
+        const movieSelect = document.getElementById('movie_select');
+        if(!movieSelect.value){
+            event.preventDefault();
+            alert('Please select a movie');
+        }
     });
 </script>
-
-{{data.poster_path}}
 
 {% endblock %}
