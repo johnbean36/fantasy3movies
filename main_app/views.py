@@ -12,11 +12,12 @@ import requests, os
 from datetime import datetime
 
 
+
 def home(request):
     return render(request, 'home.html')
 
 def movies_index(request):
-    movies = Movie.objects.all()
+    movies = Movie.objects.filter(user=request.user)
     return render(request, 'movies/index.html', {
        'movies': movies
     })
@@ -57,21 +58,21 @@ def movies_detail(request, movie_id):
 
 
 def search_id(request, result_id):
-   api_token = os.environ.get('TMDB_API_TOKEN')
-   url = f"https://api.themoviedb.org/3/movie/{result_id}"
-   headers = {
+  movies = Movie.objects.filter(user=request.user)
+  #movies = Movie.objects.all()
+  api_token = os.environ.get('TMDB_API_TOKEN')
+  url = f"https://api.themoviedb.org/3/movie/{result_id}"
+  headers = {
     "accept": "application/json",
     "Authorization": api_token
-    }
-   response = requests.get(url, headers=headers)
-   data = response.json()
-   print('banana')
-   for result in data.get('results', []):
-      formatted_release_date = datetime.strptime(result['release_date'], '%Y-%m-%d').strftime('%B %d, %Y')
-      # print(formatted_release_date)
-      result['formatted_release_date'] = formatted_release_date
-      print(result, 'test')
-   return render(request, 'movies/results.html', {'data': data})
+  }
+  response = requests.get(url, headers=headers)
+  data = response.json()
+  for result in data.get('results', []):
+    formatted_release_date = datetime.strptime(result['release_date'], '%Y-%m-%d').strftime('%B %d, %Y')
+    # print(formatted_release_date)
+    result['formatted_release_date'] = formatted_release_date
+  return render(request, 'movies/results.html', {'data': data, 'movies': movies})
 
 def search(request):
   api_token = os.environ.get('TMDB_API_TOKEN')
@@ -93,7 +94,16 @@ def search(request):
 
   return render(request, 'movies/poster.html', {'data': data})
 
-
+def add_poster(request):
+  try:
+    movie_id = request.POST.get('movie')
+    movie = Movie.objects.get(id=movie_id)
+    movie.movie_poster = request.POST.get('poster')
+    movie.save()
+  except Exception as e:
+    print(str(e))
+  return redirect('search')
+  
 
 def signup(request):
   error_message = ''

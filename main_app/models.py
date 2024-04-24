@@ -62,6 +62,7 @@ class Movie(models.Model):
         choices=GENRES,
     )
     description = models.TextField(max_length=500)
+    movie_poster = models.CharField(max_length=100, null=True)
     release_year = models.IntegerField(
     validators=[
         RegexValidator(
@@ -76,6 +77,8 @@ class Movie(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     prod_mem = models.ManyToManyField(Prod_Mem)
     actor = models.ManyToManyField(Actor)
+    
+
 
     def __str__(self):
         return f'{self.name} ({self.id})'
