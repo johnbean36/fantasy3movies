@@ -9,6 +9,7 @@ from .models import Movie, Actor, Prod_Mem
 from .forms import AssocActorForm, AssocCrew
 from django.views.generic import DeleteView, UpdateView
 import requests, os
+from datetime import datetime
 
 
 def home(request):
@@ -64,6 +65,12 @@ def search_id(request, result_id):
     }
    response = requests.get(url, headers=headers)
    data = response.json()
+   print('banana')
+   for result in data.get('results', []):
+      formatted_release_date = datetime.strptime(result['release_date'], '%Y-%m-%d').strftime('%B %d, %Y')
+      # print(formatted_release_date)
+      result['formatted_release_date'] = formatted_release_date
+      print(result, 'test')
    return render(request, 'movies/results.html', {'data': data})
 
 def search(request):
@@ -76,7 +83,14 @@ def search(request):
   }
   response = requests.get(url, headers=headers)
   data = response.json()
-  print(data)
+  # for result in data.get('results', []):
+  #       release_date = result.get('release_date', '')  
+  #       if release_date:  
+  #           formatted_release_date = datetime.strptime(release_date, '%Y-%m-%d').strftime('%B %d, %Y')
+  #           result['formatted_release_date'] = formatted_release_date
+  #       else:
+  #           result['formatted_release_date'] = 'Unknown'  
+
   return render(request, 'movies/poster.html', {'data': data})
 
 

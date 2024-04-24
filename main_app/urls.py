@@ -15,5 +15,5 @@ urlpatterns = [
     path('movies/<int:pk>/edit', views.MovieUpdate.as_view(), name="update"),
     path('movies/poster', views.poster_search, name='poster'),
     path('movies/search/', views.search, name='search'),
-    path('search/<int:result_id>', views.search_id, name='search_id')
+    path('search/<int:result_id>', views.search_id, name='search_id'),
 ]
