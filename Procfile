@@ -1,1 +1,1 @@
-web: gunicorn fantasy3movies.wsgi:applicationcd
+web: gunicorn fantasy3movies.wsgi
