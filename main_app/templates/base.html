@@ -16,13 +16,14 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <header class="jumbotron jumbotron-fluid">
+        <header class="jumbotron jumbotron-fluid">
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <h1 class="text-sm-left">
+                    <h1 class="text-sm-left" style="margin-top: 10px;">
                         <span class="text-primary">Fantasy</span>
-                        <span class="text-success">3</span>
+                            <img src="{% static 'pics/f3mlogo.png' %}" alt="">
+                        </span>
                         <span class="text-danger">Movies</span>
                     </h1>
                     <h2 class="text-sm-center">Make your most fantastic movie!</h2>
@@ -42,9 +43,9 @@
                     {% if user.is_authenticated %}
                     <li class="nav-itme"><a class="nav-link" href="{% url 'index' %}"><i class="fa fa-th-list fa-lg"></i>Dream Movies</a></li>
                     <li class="nav-itme"><a class="nav-link" href="{% url 'add_movie' %}"><i class="fa fa-film fa-lg"></i>Add a Movie</a></li>
-                    <li class="nav-itme"><a class="nav-link" href="{% url 'actors' %}"><i class="fa fa-address-card-o fa-lg"></i>Add Actors</a></li>
-                    <li class="nav-itme"><a class="nav-link" href="{% url 'production' %}"><i class="fa fa-video fa-lg"></i>Crew</a></li>
-                    <li class="nav-itme"><a class="nav-link" href="{% url 'poster' %}"><i class="fa-regular fa-image"></i>Movie Poster</a></li>
+                    <li class="nav-itme"><a class="nav-link" href="{% url 'actors' %}"><i class="fa fa-address-card-o fa-lg"></i>Casts</a></li>
+                    <li class="nav-itme"><a class="nav-link" href="{% url 'production' %}"><i class="fa fa-video fa-lg"></i>Crews</a></li>
+                    <li class="nav-itme"><a class="nav-link" href="{% url 'poster' %}"><i class="fa-regular fa-image"></i>Posters</a></li>
                     <li class="nav-itme" id="logout-button" >
                     <li class="nav-itme">
                         <form id="logout-form" method="post" action="{% url 'logout' %}">
@@ -61,9 +62,30 @@
         </div>
     </nav>
 
-    <main class="body-container overflow-scroll">
+    <main class="body-container overflow-scroll" style="margin-bottom: 150px;">
         {% block content %}
         {% endblock %}
+    <footer class="footer mt-auto py-3">
+        <div class="container">
+            <div class="row">             
+                <div class="col-sm-6">
+                    <h5>Social</h5>
+                    <a class="btn btn-social-icon btn-instagram" href="http://instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+                    <a class="btn btn-social-icon btn-facebook" href="http://facebook.com/"><i class="fa-brands fa-facebook"></i></a>
+                    <a class="btn btn-social-icon btn-instagram" href="http://twitter.com/"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a class="btn btn-social-icon btn-google" href="http://youtube.com/"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+                <br/>
+                <div class="col-sm-6 text-sm-left">
+                    <h5>Contact</h5>
+                    <a role="button" class="btn btn-link text-secondary" href=""><i class="fa fa-phone fa=lg"></i>1234567879</a>
+                    <br>
+                    <a role="button" class="btn btn-link text-secondary" href="mailto:ouremail@f3m.com"><i class="fa fa-envelope fa=lg"></i>ouremail@f3m.com</a>
+                </div>                
+           </div>
+        </div>
+    </footer>
+
     </main>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
 </body>
