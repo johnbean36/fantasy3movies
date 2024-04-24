@@ -88,11 +88,7 @@ WSGI_APPLICATION = 'fantasy3movies.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-       'ENGINE': 'django.db.backends.postgresql',
-       'NAME': 'fantasy3movies',
-    }
-    # 'default': dj_database_url.config(conn_max_age=600)
+    'default': dj_database_url.config(conn_max_age=600)    
 }
 
 
