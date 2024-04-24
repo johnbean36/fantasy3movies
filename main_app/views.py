@@ -8,15 +8,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Movie, Actor, Prod_Mem
 from .forms import AssocActorForm, AssocCrew
 from django.views.generic import DeleteView, UpdateView
-import requests
+import requests, os
+from datetime import datetime
 
-# Create your views here.
-
-# def actor_dropdown(request):
-#    actors = Actor.objects.all()
-#    return render(request,'movies/detail.html',{
-#       'actors': actors
-#     })
 
 def home(request):
     return render(request, 'home.html')
@@ -62,25 +56,44 @@ def movies_detail(request, movie_id):
       })
 
 
+def search_id(request, result_id):
+   api_token = os.environ.get('TMDB_API_TOKEN')
+   url = f"https://api.themoviedb.org/3/movie/{result_id}"
+   headers = {
+    "accept": "application/json",
+    "Authorization": api_token
+    }
+   response = requests.get(url, headers=headers)
+   data = response.json()
+   print('banana')
+   for result in data.get('results', []):
+      formatted_release_date = datetime.strptime(result['release_date'], '%Y-%m-%d').strftime('%B %d, %Y')
+      # print(formatted_release_date)
+      result['formatted_release_date'] = formatted_release_date
+      print(result, 'test')
+   return render(request, 'movies/results.html', {'data': data})
+
 def search(request):
-    url = "https://api.themoviedb.org/3/search/movie"
-    api_key = api_key
-    query = request.GET.get('query', '')
-    params = {
-        "include_adult": "false",
-        "language": "en-US",
-        "page": 1,
-        "api_key": api_key,
-        "query": query
-    }
-    headers = {
-        "accept": "application/json"
-    }
+  api_token = os.environ.get('TMDB_API_TOKEN')
+  movie_title = request.POST.get('genre')
+  url = f'https://api.themoviedb.org/3/search/movie?&query={movie_title}'
+  headers = {
+    "accept": "application/json",
+    "Authorization": api_token
+  }
+  response = requests.get(url, headers=headers)
+  data = response.json()
+  # for result in data.get('results', []):
+  #       release_date = result.get('release_date', '')  
+  #       if release_date:  
+  #           formatted_release_date = datetime.strptime(release_date, '%Y-%m-%d').strftime('%B %d, %Y')
+  #           result['formatted_release_date'] = formatted_release_date
+  #       else:
+  #           result['formatted_release_date'] = 'Unknown'  
 
-    response = requests.get(url, params=params, headers=headers)
-    data = response.json()
+  return render(request, 'movies/poster.html', {'data': data})
 
-    return render(request, 'movies/results.html', {'data': data})
+
 
 def signup(request):
   error_message = ''

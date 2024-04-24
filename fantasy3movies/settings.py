@@ -21,7 +21,7 @@ api_key = os.getenv('API_KEY')
 TMDB_API_TOKEN = os.getenv('TMDB_API_TOKEN')
 import os
 import dj_database_url
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY=os.environ['SECRET_KEY']
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 

@@ -3,8 +3,25 @@
 
 <form action="{% url 'search' %}" method="POST">
     {% csrf_token %}
-    <label for="image">Enter a movie name to search:</label>
-    <input type="text">
+    <label for="image">Search for movie details by title:</label>
+    <input type="text" name="genre">
     <input type="submit" value="Search" class="btn btn-secondary">
 </form>
+
+{% if data %}
+<ul>
+    {% for result in data.results %}
+    <li>
+        <form action="{% url 'search_id' result.id %}">
+            {% csrf_token %}
+            <button type="submit">View Poster for '{{ result.title }}'</button>
+        </form>
+        <h3>Official Synopsis:</h3>{{ result.overview }}<br>
+        <h4>Released:</h4>{{ result.release_date }}
+        <br><br>
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+
 {% endblock %}
