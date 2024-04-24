@@ -1,0 +1,140 @@
+body {
+  font-family: "Open Sans", sans-serif;
+  color: #5c636e
+}
+
+h1 {
+  font-family: "Lobster", cursive;
+  color: #393e46;
+}
+
+h2, h3{
+  color: #f8b500;
+}
+
+header h2 {
+  color:#f8b500;
+}
+
+footer {
+  background-image: linear-gradient( #d3d6db, white);
+  padding: 20px 0;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.jumbotron {
+  background-image: linear-gradient(to top,#d3d6db,white );
+  color: white;
+  margin: 0;
+}
+
+.row-content {
+  padding: 50px 0;
+  border-bottom: 1px ridge;
+  min-height: 200px;
+}
+
+
+.navbar {
+  background-color: #f8b500;
+
+}
+
+/* navbar text */
+.navbar-dark  .navbar-nav .nav-link {
+  color: #393e46;
+  font-size: 16px;
+}
+
+#logout-button {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+#signin-button {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.navbar-nav {
+  width: 100%;
+}
+
+
+
+.carousel {
+  width: 50vw;
+  height: 50vh;
+  position: relative;
+}
+
+.carousel > ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: 200ms opacity ease-in-out;
+  transition-delay: 200ms;
+}
+
+.slide > img {
+  display: block;
+  margin: 0 auto;
+  height: 100%;
+  object-position: center;
+}
+
+.slide[data-active] {
+  opacity: 1;
+  z-index: 1;
+  transition-delay: 0ms;
+  
+} 
+
+.carousel-button {
+  position: absolute;
+  z-index: 2;
+  background: none;
+  border: none;
+  font-size: 4rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, .5);
+  cursor: pointer;
+  border-radius: .25rem;
+  padding: 0 .5rem;
+  background-color: rgba(0, 0, 0, .1);
+}
+
+.carousel-button:hover,
+.carousel-button:focus {
+  color: white;
+  background-color: rgba(0, 0, 0, .2);
+}
+
+.carousel-button:focus {
+  outline: 1px solid black;
+}
+
+.carousel-button.prev {
+  left: -5rem;
+}
+
+.carousel-button.next {
+  right: -5rem;
+}
+
+section[aria-label="Movie Posters"] {
+  margin: 0 auto; 
+  text-align: center; 
+}
