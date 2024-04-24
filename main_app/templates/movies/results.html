@@ -1,5 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
+
+
+<img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{data.poster_path}}" alt="movie_poster" style="max-width: 70vmin; max-height: 70vmin;">
+
+<button id="saveButton">Add Poster</button>
+
+<script>
+    document.getElementById("saveButton").addEventListener("click", function() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/save-image", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log("Image saved successfully!");
+            }
+        };
+        xhr.send(JSON.stringify({imageUrl: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{data.poster_path}}" }));
+    });
+</script>
+
 {{data.poster_path}}
 
 {% endblock %}
