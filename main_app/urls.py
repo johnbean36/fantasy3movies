@@ -16,4 +16,5 @@ urlpatterns = [
     path('movies/poster', views.poster_search, name='poster'),
     path('movies/search/', views.search, name='search'),
     path('search/<int:result_id>', views.search_id, name='search_id'),
+    path('movies/poster/add', views.add_poster, name="add_poster")
 ]
