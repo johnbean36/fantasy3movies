@@ -16,12 +16,11 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <header class="jumbotron jumbotron-fluid">
+        <header class="jumbotron jumbotron-fluid">
         <div class="container">
             <div class="row">
                 <div class="col">
-                    
-                    <h1 class="text-sm-left">
+                    <h1 class="text-sm-left text-center" style="margin-top: 10px;">
                         <span class="text-primary">Fantasy</span>
                         <span ><img src="../static/pics/f3mlogo.png" alt=""></span>
                         <span class="text-danger">Movies</span>
@@ -62,11 +61,11 @@
         </div>
     </nav>
 
-    <main class="body-container overflow-scroll">
+    <main class="body-container overflow-scroll" style="margin-bottom: 150px;">
         {% block content %}
         {% endblock %}
-    </main>
-    <footer class="footer mt-auto py-3">
+    </main >
+    <footer class="footer mt-auto py-3" >
         <div class="container">
             <div class="row">             
                 <div class="col-sm-6">
