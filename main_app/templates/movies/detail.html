@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-
-
+{% load static %}
 
 <div class="container">
     <!-- movie title -->
@@ -15,7 +14,11 @@
     <div class="row"> 
         <div class="col-md-6">
             <div class="card border border-secondary" style="width: 100%">
+                {% if movie.movie_poster %}
                 <img src="{{movie.movie_poster}}" class="img-fluid card-img-top" alt="movie poster">
+                {% else %}
+                <img src="{% static 'img/500x735blank.png' %}" class="img-fluid card-img-top" alt="default-movie">
+                {% endif %}
             </div>
         </div>
 

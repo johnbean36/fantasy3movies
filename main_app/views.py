@@ -12,6 +12,7 @@ import requests, os
 from datetime import datetime
 
 
+
 def home(request):
     return render(request, 'home.html')
 

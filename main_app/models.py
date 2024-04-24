@@ -62,7 +62,7 @@ class Movie(models.Model):
         choices=GENRES,
     )
     description = models.TextField(max_length=500)
-    movie_poster = models.CharField(max_length=100)
+    movie_poster = models.CharField(max_length=100, null=True)
     release_year = models.IntegerField(
     validators=[
         RegexValidator(
