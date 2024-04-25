@@ -106,14 +106,14 @@ footer {
   z-index: 2;
   background: none;
   border: none;
-  font-size: 4rem;
+  font-size: 2rem;
   top: 50%;
   transform: translateY(-50%);
   color: rgba(255, 255, 255, .5);
   cursor: pointer;
   border-radius: .25rem;
   padding: 0 .5rem;
-  background-color: rgba(0, 0, 0, .1);
+  background-color: rgba(0, 0, 0, .5);
 }
 
 .carousel-button:hover,
@@ -127,14 +127,15 @@ footer {
 }
 
 .carousel-button.prev {
-  left: -5rem;
+  left: -2rem;
 }
 
 .carousel-button.next {
-  right: -5rem;
+  right: -2rem;
 }
 
 section[aria-label="Movie Posters"] {
-  margin: 0 auto; 
-  text-align: center; 
+  margin: 20px auto 0 auto; 
+  text-align: center;
+  padding-top: 20px !important;
 }

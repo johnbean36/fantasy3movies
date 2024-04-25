@@ -1,4 +1,4 @@
-##<center> Fantasy3movies - Where you can make your own fantasy movies</center>
+## <center> Fantasy3movies - Where you can make your own fantasy movies</center>
 ---
 **Team Members:** Yong Zhang, Ryan Callebs and John Bass
   
@@ -46,3 +46,17 @@ https://app.moqups.com/HjFpWavd8zrn8znMaBfYptF9EAXx8CHi/view/page/a2ba827c6
 ## Heroku Deployment
 
 [Fantasy 3 Movies](https://fantasy3movies-f741e9546ca3.herokuapp.com/)
+
+---
+
+## References
+
+- John Jacobs
+- Jan Horak
+- Glenn Brown
+- Google Fonts
+- [BootStrap Documentaion](https://getbootstrap.com/docs/5.3/getting-started/introduction/
+)
+- NU Camp
+- Quentin Donnelly
+- The MovieDataBase - API 
