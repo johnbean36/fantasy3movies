@@ -16,6 +16,7 @@ from datetime import datetime
 def home(request):
     return render(request, 'home.html')
 
+@login_required
 def movies_index(request):
     movies = Movie.objects.filter(user=request.user)
     return render(request, 'movies/index.html', {
@@ -25,6 +26,7 @@ def movies_index(request):
 def poster_search(request):
    return render(request, 'movies/poster.html')
 
+@login_required
 def movies_detail(request, movie_id):
     movie = Movie.objects.get(id=movie_id)
     
@@ -56,7 +58,7 @@ def movies_detail(request, movie_id):
         "crew_form": crew_form
       })
 
-
+@login_required
 def search_id(request, result_id):
   movies = Movie.objects.filter(user=request.user)
   #movies = Movie.objects.all()
@@ -74,6 +76,7 @@ def search_id(request, result_id):
     result['formatted_release_date'] = formatted_release_date
   return render(request, 'movies/results.html', {'data': data, 'movies': movies})
 
+@login_required
 def search(request):
   api_token = os.environ.get('TMDB_API_TOKEN')
   movie_title = request.POST.get('genre')
@@ -86,6 +89,7 @@ def search(request):
   data = response.json()
   return render(request, 'movies/poster.html', {'data': data})
 
+@login_required
 def add_poster(request):
   try:
     movie_id = request.POST.get('movie')
@@ -111,7 +115,7 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
-class AddMovie(CreateView):
+class AddMovie(LoginRequiredMixin, CreateView):
   model = Movie
   fields = ['name', 'genre', 'description', 'release_year',]
 
@@ -119,7 +123,7 @@ class AddMovie(CreateView):
     form.instance.user = self.request.user
     return super().form_valid(form)
 
-class AddActor(CreateView):
+class AddActor(LoginRequiredMixin, CreateView):
   model = Actor
   fields = ['name', 'dob', 'nationality']
 
@@ -133,7 +137,7 @@ class AddActor(CreateView):
      context["actor_list"] = Actor.objects.all()
      return context
 
-class AddProd_Mem(CreateView):
+class AddProd_Mem(LoginRequiredMixin, CreateView):
   model = Prod_Mem
   fields = ['name', 'role']
 
@@ -146,18 +150,18 @@ class AddProd_Mem(CreateView):
     context["prod_list"] = Prod_Mem.objects.all()
     return context
 
-class DeleteActor(DeleteView):
+class DeleteActor(LoginRequiredMixin, DeleteView):
    model = Actor
    success_url = '/movies/actor'
 
-class DeleteProd(DeleteView):
+class DeleteProd(LoginRequiredMixin, DeleteView):
    model = Prod_Mem
    success_url = '/movies/production'
 
-class DeleteMovie(DeleteView):
+class DeleteMovie(LoginRequiredMixin, DeleteView):
    model = Movie
    success_url = '/movies'
 
-class MovieUpdate(UpdateView):
+class MovieUpdate(LoginRequiredMixin, UpdateView):
    model = Movie
    fields = ['genre', 'description', 'release_year']

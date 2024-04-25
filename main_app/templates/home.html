@@ -36,11 +36,13 @@
     const buttons = document.querySelectorAll("[data-carousel-button]")
     buttons.forEach(button => {
         button.addEventListener("click", () => {
+            // check the value of each clicked button. if the value = next assign it a variable of 1, anything else gets a value of -1
             const offset = button.dataset.carouselButton === "next" ? 1 : -1
+            // find the closes parent of the clicked button with a 'data-carousel' attribute and select it's descendant element with a data-slides attribute
             const slides = button
                 .closest("[data-carousel]")
                 .querySelector("[data-slides]")
-
+            // select the slide that currently has the data-active attribute, ie the currently active slide
             const activeSlide = slides.querySelector("[data-active]")
             let newIndex = [...slides.children].indexOf(activeSlide) + offset
             if (newIndex < 0) newIndex = slides.children.length -1

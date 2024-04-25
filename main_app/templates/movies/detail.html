@@ -20,6 +20,7 @@
                 <img src="{{movie.movie_poster}}" class="img-fluid card-img-top" alt="movie poster">
                 {% else %}
                 <img src="{% static 'img/500x735blank.png' %}" class="img-fluid card-img-top" alt="default-movie">
+                <a class="card-text" href="{% url 'poster' %}">Add Your Poster Here!</a>
                 {% endif %}
             </div>
         </div>
