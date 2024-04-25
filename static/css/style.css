@@ -135,6 +135,13 @@ footer {
 }
 
 section[aria-label="Movie Posters"] {
-  margin: 0 auto; 
-  text-align: center; 
+  margin: 20px auto 0 auto; 
+  text-align: center;
+  padding-top: 20px;
+}
+
+.slide {
+  margin: 20px auto 0 auto; 
+  text-align: center;
+  padding-top: 20px;
 }
