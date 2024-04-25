@@ -13,10 +13,19 @@
                             <img src="https://images.unsplash.com/photo-1539481915544-f5cd50562d66?q=80&w=2933&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Movie-Theatre">
                         </li>
                         <li class="slide">
-                            <img src="https://images.unsplash.com/photo-1635805737707-575885ab0820?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Spider-Man">
+                            <img src="https://image.tmdb.org/t/p/original/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg" alt="Dune-Part 2">
                         </li> 
                         <li class="slide">
-                            <img src="https://images.unsplash.com/photo-1616530940355-351fabd9524b?q=80&w=3024&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Poster Collection">
+                            <img src="https://image.tmdb.org/t/p/original/bzONet3OeCTz5q9WOkGjVpOHMSR.jpg" alt="Interstellar">
+                        </li>
+                        <li class="slide">
+                            <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/uXW11ucX2Nup96QWFgiDYzEgXTN.jpg" alt="City of God">
+                        </li>
+                        <li class="slide">
+                            <img src="https://image.tmdb.org/t/p/original/zC1U3U6tgHdW6Jl9E2C5e6QS7BP.jpg" alt="Bronx Tale">
+                        </li>
+                        <li class="slide">
+                            <img src="https://image.tmdb.org/t/p/original/vpbaStTMt8qqXaEgnOR2EE4DNJk.jpg" alt="Up">
                         </li>
                     </ul>
                 </div>
@@ -38,17 +47,22 @@
         button.addEventListener("click", () => {
             // check the value of each clicked button. if the value = next assign it a variable of 1, anything else gets a value of -1
             const offset = button.dataset.carouselButton === "next" ? 1 : -1
-            // find the closes parent of the clicked button with a 'data-carousel' attribute and select it's descendant element with a data-slides attribute
+            // find the closest parent of the clicked button with a 'data-carousel' attribute and select it's descendant element with a data-slides attribute
             const slides = button
                 .closest("[data-carousel]")
                 .querySelector("[data-slides]")
             // select the slide that currently has the data-active attribute, ie the currently active slide
             const activeSlide = slides.querySelector("[data-active]")
+            // convert the slidelist into an array and calcs the index of the slide that should be displayed using the activeslide and adds the offset value to it
             let newIndex = [...slides.children].indexOf(activeSlide) + offset
+            // if newindex is less than one the previous slide is activated
             if (newIndex < 0) newIndex = slides.children.length -1
+            // if the new index is greater than/= to the num of slides, the next slide should be activated and set the newIndex to 0
             if (newIndex >= slides.children.length) newIndex = 0
 
+            // sets the data-active attribute of the slide at the newIndex to true making it active
             slides.children[newIndex].dataset.active = true
+            // remove the 'data-active' attribute from the previously active slide which removes it from view
             delete activeSlide.dataset.active
         })
     })
