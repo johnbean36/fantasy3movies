@@ -138,3 +138,8 @@ section[aria-label="Movie Posters"] {
   margin: 0 auto; 
   text-align: center; 
 }
+
+.card-text {
+  display: block;
+  text-align: center;
+}
